@@ -1,4 +1,4 @@
-#!/usr/bin/python3.5
+#!/usr/bin/python3
 # -*-coding:utf-8 -
 
 """
@@ -60,7 +60,6 @@ DEPARTURE = pygame.transform.scale(DEPARTURE, (SPRITE_SIZE, SPRITE_SIZE))
 ARRIVAL = pygame.image.load("images/arrivee.jpg").convert()
 ARRIVAL = pygame.transform.scale(ARRIVAL, (SPRITE_SIZE, SPRITE_SIZE))
 
-
 # Labyrinth items
 TUBE = pygame.image.load("images/tube_plastique.png").convert_alpha()
 TUBE = pygame.transform.scale(TUBE, (SPRITE_SIZE, SPRITE_SIZE))
@@ -86,4 +85,4 @@ FILE = "map/N1.txt"
 
 # Sounds
 SOUNDTRACK = pygame.mixer.Sound('sounds/sound_game.wav')
-SOUNDTRACK.set_volume(.5)
+SOUNDTRACK.set_volume(.1)

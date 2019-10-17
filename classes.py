@@ -8,13 +8,15 @@ Labyrinth classes
 """
 import random
 
-from constantes import (FILE, NB_SPRITE, SPRITE_SIZE, WINDOW, WALL, DEPARTURE, ARRIVAL, GUARDIAN, MG)
+from constantes import (
+	FILE, NB_SPRITE, SPRITE_SIZE, WINDOW, WALL, DEPARTURE, ARRIVAL, GUARDIAN, MG
+)
 
 
 class Labyrinth:
 	"""
 	This class object 'Labyrinth' allow to define the maze.
-	We have .......
+	We have to generate and display the structure.
 	"""
 
 	def __init__(self):
@@ -70,7 +72,7 @@ class Labyrinth:
 
 class Heroe:
 	"""
-	Class wich define a character, with his position (x,y), his picture.
+	Class wich define a character, with his position (x,y) and his picture.
 	This one can move inside the labyrinth except in wall and out of screen.
 	"""
 
@@ -87,40 +89,41 @@ class Heroe:
 		"""
 		# Move to the right.
 		if direction == "right":
-			if self.pos_x < (NB_SPRITE - 1): # To avoid going out of screen.
-				if grid[self.pos_y][self.pos_x+1] != 'm' and grid[self.pos_y][self.pos_x+1] != 'g':
-				# To avoid going out of wall or guardian
+			if self.pos_x < (NB_SPRITE - 1):  # To avoid going out of screen.
+				if grid[self.pos_y][self.pos_x+1] != 'm' \
+						and grid[self.pos_y][self.pos_x+1] != 'g':
+					# To avoid going out of wall or guardian
 					self.pos_x += 1
 					self.x_value = self.pos_x * SPRITE_SIZE
 
 		# Move to the left.
 		if direction == "left":
-			if self.pos_x > 0: # To avoid going out of screen.
+			if self.pos_x > 0:  # To avoid going out of screen.
 				if grid[self.pos_y][self.pos_x-1] != 'm':
-				# To avoid going out of wall.
+					# To avoid going out of wall.
 					self.pos_x -= 1
 					self.x_value = self.pos_x * SPRITE_SIZE
 
 		# Move to the top.
 		if direction == "top":
-			if self.pos_y > 0: # To avoid going out of screen.
+			if self.pos_y > 0:  # To avoid going out of screen.
 				if grid[self.pos_y-1][self.pos_x] != 'm':
-				# to avoid going out of wall.
+					# to avoid going out of wall.
 					self.pos_y -= 1
 					self.y_value = self.pos_y * SPRITE_SIZE
 
 		# Move to the bottom.
 		if direction == "bottom":
-			if self.pos_y < (NB_SPRITE - 1): # To avoid going out of screen.
+			if self.pos_y < (NB_SPRITE - 1):  # To avoid going out of screen.
 				if grid[self.pos_y+1][self.pos_x] != 'm':
-				# To avoid going out of wall.
+					# To avoid going out of wall.
 					self.pos_y += 1
 					self.y_value = self.pos_y * SPRITE_SIZE
 
 
 class Items:
 	"""
-	Class which define 3 items (ether, tube and syringue) with coordinates, images.
+	Class which define 3 items (ether, tube & syringue) with coordinates, images.
 	These items must have random coordinates.
 	These items must be farmed by the main character.
 	"""
@@ -139,24 +142,29 @@ class Items:
 	def locate_items(self, grid):
 		"""
 		Method which define random coordinates for each items.
-		For that we create a dictionnary with all possible coordinates (accessible by the main character).
-		The, we use the function 'randomn' in this list to select coordinates (column,ligne).
+		For that we create a dictionnary with all possible coordinates,
+		accessible by the main character.
+		We use the function 'randomn' in this list,
+		to select coordinates (column,ligne).
 		"""
+
 		coordinates = ()
 		position = []
 
 		num_ligne = 0
 		while num_ligne < NB_SPRITE:
-			num_column = 1 # We remove the first cell - cell[0] = departure.
+			# We remove the first cell - cell[0] = departure.
+			num_column = 1
 			while num_column < NB_SPRITE:
-				if grid[num_ligne][num_column] == '0': # We select only coordinates in empty cells.
+				# We select only coordinates in empty cells.
+				if grid[num_ligne][num_column] == '0':
 					coordinates = (num_column, num_ligne)
 					position.append(coordinates)
 				num_column += 1
 			num_ligne += 1
 
 		tmp = random.sample(position, 1)
-		if tmp not in Items.coordinates_elements: # To avoid duplicates coordinates.
+		if tmp not in Items.coordinates_elements:  # To avoid duplicates coordinates.
 			Items.coordinates_elements.append(tmp)
 
 		self.pos_x, self.pos_y = tmp[0]
@@ -165,8 +173,8 @@ class Items:
 
 	def farming(self, mgpos):
 		"""
-		Method which define if items are collected by the main character, only if coordinates are equal.
+		Method which define if items are collected by the main character,
+		only if coordinates are equal.
 		"""
 		if mgpos.pos_x == self.pos_x and mgpos.pos_y == self.pos_y:
 			self.collected = True
-			
