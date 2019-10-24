@@ -14,10 +14,10 @@ NB_SPRITE = 15
 SPRITE_SIZE = 30
 SCREEN_SIDE = NB_SPRITE * SPRITE_SIZE
 
-# Customization window
+# Customization window...
 WINDOW = pygame.display.set_mode((SCREEN_SIDE + 90, SCREEN_SIDE))
-#... Without this line, 'ICON' will be a misstake.
-#... + 60 px for items scoreboard.
+# Without this line, 'ICON' will be a misstake.
+# + 60 px for items scoreboard.
 WINDOW_TITLE = "Help Mac Gyver to escape !"
 ICON = pygame.image.load("images/macgyver.png").convert_alpha()
 
