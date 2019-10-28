@@ -25,6 +25,7 @@ class Labyrinth:
 		self.generate()
 		self.x_value = 0
 		self.y_value = 0
+		self.mg_position = []
 
 	def generate(self):
 		"""
@@ -61,6 +62,8 @@ class Labyrinth:
 					WINDOW.blit(WALL, (self.x_value, self.y_value))
 				elif sprite == 'd':		   # d = "Départ".
 					WINDOW.blit(DEPARTURE, (self.x_value, self.y_value))
+					self.mg_position.append(num_ligne)
+					self.mg_position.append(num_sprite)					
 				elif sprite == 'a':		   # a = "Arrivée".
 					WINDOW.blit(ARRIVAL, (self.x_value, self.y_value))
 				elif sprite == 'g':
@@ -69,6 +72,13 @@ class Labyrinth:
 				num_sprite += 1
 			num_ligne += 1
 
+	def methode ()
+			
+		dupliquer methode précédente
+		retrouver le D 
+		remplir self.mg_position
+		renvoyer la valeur
+
 
 class Heroe:
 	"""
@@ -76,17 +86,18 @@ class Heroe:
 	This one can move inside the labyrinth except in wall and out of screen.
 	"""
 
-	def __init__(self):
-		self.pos_x = 0
-		self.pos_y = 0
-		self.x_value = 0
-		self.y_value = 0
+	def __init__(self, pos):
+		self.pos_x = pos[0]
+		self.pos_y = pos[1]
+		self.x_value = pos[0]
+		self.y_value = pos[1]
 		self.sprite = MG
 
 	def move(self, direction, grid):
 		"""
 		Method wich define the character's abilities to move in the labyrinth.
 		"""
+
 		# Move to the right.
 		if direction == "right":
 			if self.pos_x < (NB_SPRITE - 1):  # To avoid going out of screen.
