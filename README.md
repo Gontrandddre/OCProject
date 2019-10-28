@@ -1,4 +1,7 @@
-Projet 3: Aidez MacGyver à s'échapper !
+﻿Projet 3: Aidez MacGyver à s'échapper !
+
+
+Bienvenue !
 
 Projet n°3 du parcours « développeur d’application – Python » chez Openclassrooms. Première mise en application du langage Python à travers la réalisation d’un jeu vidéo en 2D à l’aide de la bibliothèque Pygame. 
 
@@ -10,7 +13,7 @@ Lien Github: https://github.com/Gontrandddre/Project3_MacGyver
 
 Environnement : 
 
-	- langage: Python 
+	- langage: Python 3
 	- bibliothèque: Pygame, 
 	- éditeur de texte: Sublime Text, 
 	- outil de versionnage: GIT, 
@@ -26,18 +29,19 @@ Le personnage principale, MacGyver, se dirige sur la structure du labyrinthe gr�
 
 2. La structure :
 
-	3 fichiers inspirés du modèle MVC (Modèle Vue Contrôleur) : « classes.py » (caractéristiques des éléments du jeu), 
+	- 3 fichiers inspirés du modèle MVC (Modèle Vue Contrôleur) : 
+« classes.py » (caractéristiques des éléments du jeu), 
 « constantes.py » (gestion des constantes du jeu), 
 « mglabyrinth.py » (logique de jeu).
 
-	3 dossiers supports:
-"Images"(visuel du labyrinthe et éléments)
-"Map" (structure du labyrinthe)
-"Sounds"(sons du jeu)
+	- 3 dossiers supports:
+« Images » (visuel du labyrinthe et éléments),
+« Map » (structure du labyrinthe),
+« Sounds » (sons du jeu).
 
-	2 fichiers supports:
-"Requirements" (versions des bibliothèques utilisées)
-".gitignore" (dossiers/fichiers à ignorer pour git)
+	- 2 fichiers supports:
+« Requirements » (versions des bibliothèques utilisées),
+« .gitignore » (dossiers/fichiers à ignorer pour git).
 
 
 3. Les algorithmes :
@@ -51,15 +55,19 @@ Gestion des boucles du programme :
 Génération de la structure du labyrinthe :
 
 Comme nous l’avons vu précédemment, la structure du labyrinthe se base sur un fichier.txt qui contient 15 lignes et 15 caractères (« m » = mur, « a » = arrivée, « d » = départ, « gardien ») par ligne. 
-Pour générer et afficher le labyrinthe nous avons une classe « Labyrinthe » ayant comme attributs dans son constructeur une grille vide ainsi que le fichier.txt. On distingue deux méthodes : 
+Pour générer et afficher le labyrinthe nous avons une classe « Labyrinthe » ayant comme attributs dans son constructeur une grille vide, le fichier.txt, ainsi qu'une liste « mg_position » détenant les coordonnées de la case de départ. On distingue trois méthodes : 
 
 	Méthode « generate » : Elle génère une liste de listes à partir du fichier.txt. Celle-ci sera intégrée dans la grille vide.
 
 	Méthode « display » : Pour chaque élément de la grille (c’est à dire les caractères), nous allons attribuer un sprite et une position (x, y). Afin que ces sprites soient uniformes et dimensionnés aux caractéristiques du labyrinthe, nous appliquons sur chaque image une fonction « pygame.transform.scale ». Rien n’est affiché pour les cases vides (« 0 »). 
 
+	Méthode  « locate_heroe » permet de lire la grille (structure du labyrinthe), de récupérer les coordonnées de la case départ dans une liste « mg_position ». Ces valeurs seront exportées dans le constructeur de la classe « Heroe » afin d'attribuer les coordonnées de départ du personnage MacGyver.
+
 Déplacement et affichage de MacGyver :
 
-Ici, une classe « Hero » est créée pour définir les caractéristiques du personnage MacGyver, elle a comme attributs les coordonnées (x, y) en pixels. Puis, une méthode « move » détient en paramètre la grille du labyrinthe ainsi que la direction à appliquer au personnage.
+Ici, une classe « Hero » est créée pour définir les caractéristiques du personnage MacGyver, elle a comme attributs les coordonnées (x, y) en pixels issu de la liste « mg_position précédemment créée..Afin de déplacer MacGyver et de positionner MacGyver sur la case de départ nous appliquons à cette classe une méthode :
+
+	Méthode « move » détient en paramètre la grille du labyrinthe ainsi que la direction à appliquer au personnage.
 
 Dans la boucle du jeu, pour chaque pression d’une touche directionnelle, le personnage se déplacera d’une case dans la direction souhaitée, à condition de rester dans le cadre et de ne pas se confronter à un mur. Afin que l’utilisateur voit le déplacement, un rafraîchissement graphique du labyrinthe sera effectué.
 
@@ -80,10 +88,10 @@ Nous appliquons à la fin de la boucle de jeu une fonction permettant de la fina
 
 Concernant ce projet, plusieurs axes de développement peuvent être opérés. En voici une partie non exhaustive :
 
-Optimiser le code ;
-Appliquer des effets sonores via « pygame.mixer » ;
-Ajouter un ou plusieurs niveaux au jeu ;
-Rendre les objets et le gardien mobile ;
-Utiliser le module « rect » pour une plus grande flexibilité des collisions ;
-Améliorer les graphismes du jeu, particulièrement MacGyver (sprite de déplacement à droite, gauche, vers le haut, vers le bas par exemple) ;
-Améliorer l’ergonomie du jeu ainsi que l’expérience utilisateur.
+	- Optimiser le code,
+	- Appliquer des effets sonores via « pygame.mixer »,
+	- Ajouter un ou plusieurs niveaux au jeu,
+	- Rendre les objets et le gardien mobile,
+	- Utiliser le module « rect » pour une plus grande flexibilité des collisions,
+	- Améliorer les graphismes du jeu, particulièrement MacGyver (sprite de déplacement à droite, gauche, etc.)
+	- Améliorer l’ergonomie du jeu ainsi que l’expérience utilisateur.
