@@ -26,6 +26,8 @@ class Labyrinth:
 		self.x_value = 0
 		self.y_value = 0
 		self.mg_position = []
+		self.locate_heroe()
+
 
 	def generate(self):
 		"""
@@ -61,9 +63,7 @@ class Labyrinth:
 				if sprite == 'm':		   # m = "Mur".
 					WINDOW.blit(WALL, (self.x_value, self.y_value))
 				elif sprite == 'd':		   # d = "Départ".
-					WINDOW.blit(DEPARTURE, (self.x_value, self.y_value))
-					self.mg_position.append(num_ligne)
-					self.mg_position.append(num_sprite)					
+					WINDOW.blit(DEPARTURE, (self.x_value, self.y_value))		
 				elif sprite == 'a':		   # a = "Arrivée".
 					WINDOW.blit(ARRIVAL, (self.x_value, self.y_value))
 				elif sprite == 'g':
@@ -72,13 +72,24 @@ class Labyrinth:
 				num_sprite += 1
 			num_ligne += 1
 
-	def methode ()
-			
-		dupliquer methode précédente
-		retrouver le D 
-		remplir self.mg_position
-		renvoyer la valeur
-
+	def locate_heroe(self):
+		"""
+		Method allow to affiliate coordonnates of MacGyver and coordinates of character "d",
+		for departure, in file.txt at the beginning of gameplay.
+		"""
+		num_ligne = 0
+		for ligne in self.grid:
+			num_sprite = 0
+			for sprite in ligne:
+				self.x_value = num_sprite * SPRITE_SIZE
+				self.y_value = num_ligne * SPRITE_SIZE
+				if sprite == 'd':		   # d = "Départ".
+					self.mg_position.append(num_sprite)
+					self.mg_position.append(num_ligne)
+					self.mg_position.append(self.x_value)
+					self.mg_position.append(self.y_value)
+				num_sprite += 1
+			num_ligne += 1
 
 class Heroe:
 	"""
@@ -89,15 +100,14 @@ class Heroe:
 	def __init__(self, pos):
 		self.pos_x = pos[0]
 		self.pos_y = pos[1]
-		self.x_value = pos[0]
-		self.y_value = pos[1]
+		self.x_value = pos[2]
+		self.y_value = pos[3]
 		self.sprite = MG
 
 	def move(self, direction, grid):
 		"""
 		Method wich define the character's abilities to move in the labyrinth.
 		"""
-
 		# Move to the right.
 		if direction == "right":
 			if self.pos_x < (NB_SPRITE - 1):  # To avoid going out of screen.
